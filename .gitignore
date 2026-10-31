@@ -1,0 +1,47 @@
+# --- Local tool state (repo root) ---
+# Local History extension snapshots
+.history/
+.history*
+
+# Lighthouse reports / LHCI output
+.lh/
+.lh
+
+# AI / agent scratch files
+.copilot/
+.continue/
+.aider*
+.claude/
+AGENTS.md
+.copilot-instructions.md
+
+# --- Build output / dependencies ---
+node_modules/
+dist/
+dist-ssr/
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# --- Secrets & local config (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.keystore
+*.db3
+*.db3.corrupt-*
+*.sqlite
+*.sqlite3
+*.local
+
+# --- Generic OS / editor noise ---
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?

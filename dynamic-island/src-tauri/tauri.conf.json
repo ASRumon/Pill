@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Pill",
+  "version": "2.0.0",
+  "identifier": "com.asrumon.pill",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Pill",
+        "width": 540,
+        "height": 430,
+        "transparent": true,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "resizable": false,
+        "shadow": false,
+        "visible": false,
+        "center": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null,
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "$TEMP/dynamic-island-images/**",
+          "$TEMP/dynamic-island-thumbs/**",
+          "$APPLOCALDATA/assets/**"
+        ]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "Asaduzzaman Rumon",
+    "copyright": "© 2026 Asaduzzaman Rumon. All rights reserved.",
+    "homepage": "https://info.asrumon.workers.dev",
+    "category": "Productivity",
+    "shortDescription": "A floating dynamic island for your clipboard, files, focus and search.",
+    "longDescription": "Pill sits at the top of the screen as a compact island. Hover it to open: keep a clipboard history, collect anything you drag onto it, track tasks, control media playback, run focus sessions, and search files or the web without leaving the desktop.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

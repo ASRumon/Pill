@@ -1,0 +1,284 @@
+@import "tailwindcss";:root {
+	color-scheme: light dark;
+	--bg-main: rgba(18, 18, 24, 0.9);
+	--bg-card: rgba(32, 34, 42, 0.88);
+	--line-soft: rgba(255, 255, 255, 0.1);
+	--line-strong: rgba(255, 255, 255, 0.16);
+	--text-main: #f7f7fb;
+	--text-muted: #b9bac4;
+	--accent: #60cdff;
+	--accent-2: #8bd8ff;
+	--control-surface: rgba(8, 10, 16, 0.72);
+	--mica-tint: rgba(20, 22, 30, 0.92);
+	--glass-blur: 24px;
+	--glass-saturation: 132%;
+}
+
+@media(prefers-color-scheme: light){:root {
+	--bg-main: rgba(246, 247, 251, 0.92);
+	--bg-card: rgba(255, 255, 255, 0.9);
+	--line-soft: rgba(25, 25, 35, 0.09);
+	--line-strong: rgba(25, 25, 35, 0.15);
+	--text-main: #1a1a1f;
+	--text-muted: #5e5e67;
+	--accent: #0067c0;
+	--accent-2: #005a9e;
+	--control-surface: rgba(255, 255, 255, 0.84);
+	--mica-tint: rgba(247, 248, 253, 0.94);
+	--glass-blur: 22px;
+	--glass-saturation: 125%;
+}
+}
+
+* {
+box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+overflow: hidden;
+font-family: "Segoe UI Variable", "Segoe UI", Inter, sans-serif;
+background: transparent;
+color: var(--text-main);
+}
+
+body {
+background: transparent;
+}
+
+.island-shell {
+position: relative;
+border: 1px solid var(--line-soft);
+border-top: none;
+background: linear-gradient(180deg, var(--mica-tint), color-mix(in srgb, var(--bg-main), black 6%));
+-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+box-shadow: 0 24px 54px -24px rgba(0, 0, 0, 0.65), inset 0 -1px 0 var(--line-soft);
+}
+
+.island-shell::before {
+content: "";
+position: absolute;
+top: 0;
+left: 12%;
+right: 12%;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+
+.widget-card {
+border: 1px solid var(--line-soft);
+border-radius: 16px;
+background: linear-gradient(180deg, color-mix(in srgb, var(--bg-card), white 5%), var(--bg-card));
+-webkit-backdrop-filter: blur(10px) saturate(112%);
+backdrop-filter: blur(10px) saturate(112%);
+box-shadow: inset 0 1px 0 var(--line-soft), 0 8px 24px -20px rgba(0, 0, 0, 0.4);
+}
+
+.island-pill {
+opacity: 1;
+border-color: var(--line-strong);
+background: color-mix(in srgb, var(--mica-tint), black 4%);
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.island-pill-active {
+box-shadow: 0 10px 28px -8px color-mix(in srgb, var(--accent), transparent 65%), inset 0 1px 0 var(--line-soft);
+}
+
+.island-drop-hover {
+border-color: rgba(141, 224, 255, 0.68);
+box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent), transparent 55%), 0 18px 34px -20px color-mix(in srgb, var(--accent), transparent 45%), inset 0 1px 0 var(--line-strong);
+}
+
+.island-drop-processing {
+box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-2), transparent 62%), 0 12px 28px -22px color-mix(in srgb, var(--accent-2), transparent 46%), inset 0 1px 0 var(--line-strong);
+}
+
+@keyframes shelfItemFreshGlow {
+0,
+80% {
+	box-shadow: inset 0 0 0 1px rgba(125, 211, 252, 0.45), 0 0 0 1px rgba(125, 211, 252, 0.24), 0 10px 20px -14px rgba(56, 189, 248, 0.6);
+}
+100% {
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 18px -18px rgba(0, 0, 0, 0.24);
+}
+}
+
+/* Newly dropped tiles only get a glow highlight. Any opacity/transform
+   animation makes a tile blink out and back in, which reads as a glitch. */
+.shelf-item-fresh {
+animation: shelfItemFreshGlow 2.1s ease-out both;
+}
+@keyframes islandBreathe {
+0,
+100% {
+	transform: scale(1);
+}
+50% {
+	transform: scale(1.09);
+}
+}
+
+@keyframes islandPing {
+0% {
+	transform: scale(0.8);
+	opacity: 0.55;
+}
+70% {
+	transform: scale(2);
+	opacity: 0;
+}
+100% {
+	transform: scale(2);
+	opacity: 0;
+}
+}
+
+@keyframes islandShimmer {
+0% {
+	transform: translateX(-120%);
+}
+100% {
+	transform: translateX(320%);
+}
+}
+
+.island-breathe {
+animation: islandBreathe 2.6s ease-in-out infinite;
+}
+
+.island-ping {
+animation: islandPing 2.2s ease-out infinite;
+}
+
+.island-shimmer {
+animation: islandShimmer 2.4s linear infinite;
+}
+
+@media(prefers-reduced-motion: reduce) {
+.island-breathe,
+.island-ping,
+.island-shimmer {
+	animation: none;
+}
+}
+.island-shell:focus-visible {
+outline: 2px solid var(--accent);
+outline-offset: 2px;
+}
+/* Single-line strips that scroll without showing a scrollbar. */
+.no-scrollbar {
+scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+display: none;
+}
+.island-shell ::-webkit-scrollbar {
+width: 6px;
+}
+
+.island-shell ::-webkit-scrollbar-thumb {
+border-radius: 999px;
+background: var(--line-strong);
+}
+
+.island-shell ::-webkit-scrollbar-track {
+background: transparent;
+}
+
+@media(prefers-color-scheme: light) {
+.island-pill {
+	border-color: rgba(25, 25, 35, 0.1);
+}
+.island-shell [class~="text-white"] {
+	color: var(--text-main) !important;
+}
+.island-shell [class*="text-white/"] {
+	color: var(--text-muted) !important;
+}
+.island-shell [class*="text-cyan-"] {
+	color: #075c78 !important;
+}
+.island-shell [class*="text-amber-"] {
+	color: #795000 !important;
+}
+.island-shell [class*="text-emerald-"] {
+	color: #176044 !important;
+}
+.island-shell [class*="text-rose-"] {
+	color: #a62c46 !important;
+}
+.island-shell [class*="text-fuchsia-"] {
+	color: #803d8a !important;
+}
+.island-shell [class*="bg-white/"] {
+	background-color: rgba(25, 30, 42, 0.055) !important;
+}
+.island-shell [class*="bg-black/"] {
+	background-color: var(--control-surface) !important;
+}
+.island-shell [class*="border-white/"] {
+	border-color: var(--line-soft) !important;
+}
+.island-shell [class*="ring-white/"] {
+	--tw-ring-color: color-mix(in srgb, var(--line-strong), transparent 8%) !important;
+}
+.island-shell input:not([type="checkbox"]) {
+	color: var(--text-main);
+}
+.island-shell input::placeholder {
+	color: var(--text-muted);
+}
+}/* AMOLED and custom surfaces are always dark, so they need the dark tokens
+   even when Windows itself is in light mode. Inline custom properties set by
+   lib/appearance.ts win over the `:root` blocks above; this attribute only
+   has to restore the tokens that CSS hardcodes. */:root[data-surface="dark"]
+{
+	color-scheme: dark;
+	--text-main: #f7f7fb;
+	--text-muted: #b9bac4;
+	--line-soft: rgba(255, 255, 255, 0.1);
+	--line-strong: rgba(255, 255, 255, 0.16);
+	--accent: #60cdff;
+	--accent-2: #8bd8ff;
+	--control-surface: rgba(8, 10, 16, 0.72);
+}
+
+@media(prefers-color-scheme: light){:root[data-surface="dark"] .island-pill {
+	border-color: rgba(255, 255, 255, 0.16);
+}
+:root[data-surface="dark"] .island-shell [class~="text-white"] {
+	color: var(--text-main) !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-white/"] {
+	color: var(--text-muted) !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-cyan-"] {
+	color: #a5f3fc !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-amber-"] {
+	color: #fde68a !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-emerald-"] {
+	color: #a7f3d0 !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-rose-"] {
+	color: #fecdd3 !important;
+}
+:root[data-surface="dark"] .island-shell [class*="text-fuchsia-"] {
+	color: #f5d0fe !important;
+}
+:root[data-surface="dark"] .island-shell [class*="bg-white/"] {
+	background-color: rgba(255, 255, 255, 0.09) !important;
+}
+:root[data-surface="dark"] .island-shell [class*="border-white/"] {
+	border-color: rgba(255, 255, 255, 0.12) !important;
+}
+}

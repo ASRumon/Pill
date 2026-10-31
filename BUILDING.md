@@ -1,4 +1,7 @@
-# Pill
+# Pill — build & architecture notes
+
+> Public overview, screenshots and install instructions: [README.md](README.md).
+> App-workspace notes: [dynamic-island/README.md](dynamic-island/README.md).
 
 **A floating dynamic island for Windows.** Pill lives at the top of your screen as a small, always-on-top pill. Hover it and it opens into a compact panel with everything you were about to switch windows for: your clipboard history, files you dragged in, tasks, media controls, focus sessions, and search.
 

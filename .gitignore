@@ -45,3 +45,13 @@ Thumbs.db
 .idea/
 *.suo
 *.sw?
+
+# --- Local-only leftovers that are intentionally not part of the repo ---
+/files.ps1
+/landing.html
+/Asset-3.svg.svg
+/dynamic-island/focus-preview.png
+/dynamic-island/.vscode/
+/dynamic-island/public/tauri.svg
+/dynamic-island/public/vite.svg
+/dynamic-island/src/assets/react.svg
